@@ -34,6 +34,9 @@ public class EmployeeDocument {
     @Column(name = "size")
     private Long size;
 
+    @Column(name = "original_file_name")
+    private String originalFileName;
+
     // Getters and Setters
 
     public Long getId() {
@@ -90,6 +93,14 @@ public class EmployeeDocument {
 
     public void setSize(Long size) {
         this.size = size;
+    }
+
+    public String getOriginalFileName() {
+        return originalFileName;
+    }
+
+    public void setOriginalFileName(String originalFileName) {
+        this.originalFileName = originalFileName;
     }
 }
  

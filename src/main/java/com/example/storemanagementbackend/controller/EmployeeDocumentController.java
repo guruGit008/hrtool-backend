@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,6 +44,7 @@ public class EmployeeDocumentController {
                 doc.getEmployeeId(),
                 doc.getDocumentType(),
                 doc.getFileName(),
+                doc.getOriginalFileName(),
                 doc.getFileDownloadUri(),
                 doc.getFileType(),
                 doc.getSize()
@@ -61,6 +63,7 @@ public class EmployeeDocumentController {
                 doc.getEmployeeId(),
                 doc.getDocumentType(),
                 doc.getFileName(),
+                doc.getOriginalFileName(),
                 doc.getFileDownloadUri(),
                 doc.getFileType(),
                 doc.getSize()
@@ -79,6 +82,7 @@ public class EmployeeDocumentController {
                 doc.getEmployeeId(),
                 doc.getDocumentType(),
                 doc.getFileName(),
+                doc.getOriginalFileName(),
                 doc.getFileDownloadUri(),
                 doc.getFileType(),
                 doc.getSize()
@@ -98,6 +102,7 @@ public class EmployeeDocumentController {
                 doc.getEmployeeId(),
                 doc.getDocumentType(),
                 doc.getFileName(),
+                doc.getOriginalFileName(),
                 doc.getFileDownloadUri(),
                 doc.getFileType(),
                 doc.getSize()
@@ -107,38 +112,55 @@ public class EmployeeDocumentController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
  
-    @PostMapping("/upload/{docType}/{employeeId}")
-    public ResponseEntity<EmployeeDocumentDTO> uploadDocument(
+    @RequestMapping(value = "/upload/{docType}/{employeeId}", method = {RequestMethod.POST, RequestMethod.PUT})
+    public ResponseEntity<EmployeeDocumentDTO> uploadOrUpdateDocument(
             @PathVariable String docType,
             @PathVariable String employeeId,
             @RequestParam("file") MultipartFile file) {
- 
+
         String fileName = fileStorageService.storeFile(file);
+        String originalFileName = file.getOriginalFilename();
         String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/api/hr/download/")
                 .path(fileName)
                 .toUriString();
- 
-        EmployeeDocument document = new EmployeeDocument();
-        document.setEmployeeId(employeeId);
-        document.setDocumentType(docType.toUpperCase());
-        document.setFileName(fileName);
-        document.setFileType(file.getContentType());
-        document.setSize(file.getSize());
-        document.setFileDownloadUri(downloadUri);
- 
+
+        // Check if document exists for this employee and docType
+        List<EmployeeDocument> docs = documentRepository.findByEmployeeIdAndDocumentType(employeeId, docType.toUpperCase());
+        EmployeeDocument document;
+        if (!docs.isEmpty()) {
+            // Update existing document
+            document = docs.get(0);
+            document.setFileName(fileName);
+            document.setOriginalFileName(originalFileName);
+            document.setFileType(file.getContentType());
+            document.setSize(file.getSize());
+            document.setFileDownloadUri(downloadUri);
+        } else {
+            // Create new document
+            document = new EmployeeDocument();
+            document.setEmployeeId(employeeId);
+            document.setDocumentType(docType.toUpperCase());
+            document.setFileName(fileName);
+            document.setOriginalFileName(originalFileName);
+            document.setFileType(file.getContentType());
+            document.setSize(file.getSize());
+            document.setFileDownloadUri(downloadUri);
+        }
+
         document = documentRepository.save(document);
- 
+
         EmployeeDocumentDTO dto = new EmployeeDocumentDTO(
                 document.getId(),
                 document.getEmployeeId(),
                 document.getDocumentType(),
                 document.getFileName(),
+                document.getOriginalFileName(),
                 document.getFileDownloadUri(),
                 document.getFileType(),
                 document.getSize()
         );
- 
+
         return ResponseEntity.ok(dto);
     }
  
@@ -204,6 +226,77 @@ public class EmployeeDocumentController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
+    }
+
+    @PutMapping("/documents/{id}")
+    public ResponseEntity<EmployeeDocumentDTO> updateDocument(@PathVariable Long id, @RequestBody EmployeeDocumentDTO dto) {
+        Optional<EmployeeDocument> optionalDoc = documentRepository.findById(id);
+        if (optionalDoc.isPresent()) {
+            EmployeeDocument doc = optionalDoc.get();
+            doc.setEmployeeId(dto.getEmployeeId());
+            doc.setDocumentType(dto.getDocumentType());
+            doc.setFileName(dto.getFileName());
+            doc.setOriginalFileName(dto.getOriginalFileName());
+            doc.setFileDownloadUri(dto.getFileDownloadUri());
+            doc.setFileType(dto.getFileType());
+            doc.setSize(dto.getSize());
+            documentRepository.save(doc);
+            EmployeeDocumentDTO updatedDto = new EmployeeDocumentDTO(
+                doc.getId(),
+                doc.getEmployeeId(),
+                doc.getDocumentType(),
+                doc.getFileName(),
+                doc.getOriginalFileName(),
+                doc.getFileDownloadUri(),
+                doc.getFileType(),
+                doc.getSize()
+            );
+            return ResponseEntity.ok(updatedDto);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @RequestMapping(value = "/upload-multi/{docType}/{employeeId}", method = {RequestMethod.POST, RequestMethod.PUT})
+    public ResponseEntity<List<EmployeeDocumentDTO>> uploadMultipleDocuments(
+            @PathVariable String docType,
+            @PathVariable String employeeId,
+            @RequestParam("files") List<MultipartFile> files) {
+
+        List<EmployeeDocumentDTO> dtos = new ArrayList<>();
+
+        for (MultipartFile file : files) {
+            String fileName = fileStorageService.storeFile(file);
+            String originalFileName = file.getOriginalFilename();
+            String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/api/hr/download/")
+                    .path(fileName)
+                    .toUriString();
+
+            EmployeeDocument document = new EmployeeDocument();
+            document.setEmployeeId(employeeId);
+            document.setDocumentType(docType.toUpperCase());
+            document.setFileName(fileName);
+            document.setOriginalFileName(originalFileName);
+            document.setFileType(file.getContentType());
+            document.setSize(file.getSize());
+            document.setFileDownloadUri(downloadUri);
+
+            document = documentRepository.save(document);
+
+            EmployeeDocumentDTO dto = new EmployeeDocumentDTO(
+                    document.getId(),
+                    document.getEmployeeId(),
+                    document.getDocumentType(),
+                    document.getFileName(),
+                    document.getOriginalFileName(),
+                    document.getFileDownloadUri(),
+                    document.getFileType(),
+                    document.getSize()
+            );
+            dtos.add(dto);
+        }
+
+        return ResponseEntity.ok(dtos);
     }
 }
  

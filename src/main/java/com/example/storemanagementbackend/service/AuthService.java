@@ -40,24 +40,36 @@ public class AuthService {
         "ADMIN", "STORE", "DATA_MANAGER", "HR", "FINANCE"
     );
 
+    // Normalize role by removing non-letters and uppercasing
+    private static String normalizeRole(String role) {
+        return role.replaceAll("[^A-Za-z]", "").toUpperCase();
+    }
+
     public AuthResponse register(RegisterRequest request) {
+        // Normalize all incoming role names for case-insensitive and flexible processing
+        List<String> normalizedRoles = request.getRoles().stream()
+                .map(AuthService::normalizeRole)
+                .collect(Collectors.toList());
+        Set<String> normalizedAllowedRoles = ALLOWED_ROLES.stream()
+                .map(AuthService::normalizeRole)
+                .collect(Collectors.toSet());
         // Only allow registration for allowed roles
-        for (String roleName : request.getRoles()) {
-            if (!ALLOWED_ROLES.contains(roleName)) {
+        for (String roleName : normalizedRoles) {
+            if (!normalizedAllowedRoles.contains(roleName)) {
                 throw new RuntimeException("Registration not allowed for role: " + roleName);
             }
             // Check if any user already has this role
             Role role = roleRepository.findByName(roleName).orElse(null);
             if (role != null) {
                 List<User> usersWithRole = userRepository.findAll().stream()
-                    .filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(roleName)))
+                    .filter(u -> u.getRoles().stream().anyMatch(r -> normalizeRole(r.getName()).equals(roleName)))
                     .collect(Collectors.toList());
                 if (!usersWithRole.isEmpty()) {
                     throw new RuntimeException(roleName + " already has an account");
                 }
             }
         }
-        Set<Role> roles = request.getRoles().stream()
+        Set<Role> roles = normalizedRoles.stream()
                 .map(roleName -> roleRepository.findByName(roleName)
                         .orElseGet(() -> roleRepository.save(Role.builder().name(roleName).build())))
                 .collect(Collectors.toSet());
