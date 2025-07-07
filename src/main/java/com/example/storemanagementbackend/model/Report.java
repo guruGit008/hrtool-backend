@@ -39,6 +39,14 @@ public class Report {
     @Column(name = "attachment_url")
     private java.util.List<String> attachments; // Stores URLs or filenames of attachments
  
+    private String customerName;
+    private String designation;
+    private String landlineOrMobile;
+    private String emailId;
+    private String remarks;
+    private String productOrRequirements;
+    private String division;
+ 
     // Constructors
     public Report() {
     }
@@ -143,6 +151,62 @@ public class Report {
         this.attachments = attachments;
     }
  
+    public String getCustomerName() {
+        return customerName;
+    }
+ 
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+ 
+    public String getDesignation() {
+        return designation;
+    }
+ 
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+ 
+    public String getLandlineOrMobile() {
+        return landlineOrMobile;
+    }
+ 
+    public void setLandlineOrMobile(String landlineOrMobile) {
+        this.landlineOrMobile = landlineOrMobile;
+    }
+ 
+    public String getEmailId() {
+        return emailId;
+    }
+ 
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+ 
+    public String getRemarks() {
+        return remarks;
+    }
+ 
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+ 
+    public String getProductOrRequirements() {
+        return productOrRequirements;
+    }
+ 
+    public void setProductOrRequirements(String productOrRequirements) {
+        this.productOrRequirements = productOrRequirements;
+    }
+ 
+    public String getDivision() {
+        return division;
+    }
+ 
+    public void setDivision(String division) {
+        this.division = division;
+    }
+ 
     @Override
     public String toString() {
         return "Report{" +
@@ -157,6 +221,13 @@ public class Report {
                 ", approvedBy='" + approvedBy + '\'' +
                 ", approvedDate=" + approvedDate +
                 ", attachments=" + attachments +
+                ", customerName='" + customerName + '\'' +
+                ", designation='" + designation + '\'' +
+                ", landlineOrMobile='" + landlineOrMobile + '\'' +
+                ", emailId='" + emailId + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", productOrRequirements='" + productOrRequirements + '\'' +
+                ", division='" + division + '\'' +
                 '}';
     }
 }

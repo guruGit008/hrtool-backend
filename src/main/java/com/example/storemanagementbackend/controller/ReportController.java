@@ -53,13 +53,25 @@ public class ReportController {
             dto.setStatus(report.getStatus());
             dto.setSubmittedBy(report.getSubmittedBy());
             dto.setAttachments(report.getAttachments());
-            // Map employee details if type is employee
-            if ("employee".equalsIgnoreCase(report.getType()) && report.getSubmittedBy() != null) {
+            // Map customer report fields
+            dto.setCustomerName(report.getCustomerName());
+            dto.setDesignation(report.getDesignation());
+            dto.setLandlineOrMobile(report.getLandlineOrMobile());
+            dto.setEmailId(report.getEmailId());
+            dto.setRemarks(report.getRemarks());
+            dto.setProductOrRequirements(report.getProductOrRequirements());
+            // Always set the division from the report (for customer reports, this is the dropdown value)
+            dto.setDivision(report.getDivision());
+            // Map employee details if type is employee or customer
+            if (report.getSubmittedBy() != null) {
                 Employee emp = employeeRepository.findByEmployeeId(report.getSubmittedBy()).orElse(null);
                 if (emp != null) {
                     dto.setEmployeeName(emp.getEmployeeName());
                     dto.setEmployeeId(emp.getEmployeeId());
-                    dto.setDepartment(emp.getDepartment());
+                    // Only set division from employee for employee reports
+                    if ("employee".equalsIgnoreCase(report.getType())) {
+                        dto.setDivision(emp.getDepartment());
+                    }
                 } else {
                     dto.setEmployeeId(report.getSubmittedBy());
                 }
@@ -92,13 +104,25 @@ public class ReportController {
             dto.setStatus(report.getStatus());
             dto.setSubmittedBy(report.getSubmittedBy());
             dto.setAttachments(report.getAttachments());
-            // Map employee details if type is employee
-            if ("employee".equalsIgnoreCase(report.getType()) && report.getSubmittedBy() != null) {
+            // Map customer report fields
+            dto.setCustomerName(report.getCustomerName());
+            dto.setDesignation(report.getDesignation());
+            dto.setLandlineOrMobile(report.getLandlineOrMobile());
+            dto.setEmailId(report.getEmailId());
+            dto.setRemarks(report.getRemarks());
+            dto.setProductOrRequirements(report.getProductOrRequirements());
+            // Always set the division from the report (for customer reports, this is the dropdown value)
+            dto.setDivision(report.getDivision());
+            // Map employee details if type is employee or customer
+            if (report.getSubmittedBy() != null) {
                 Employee emp = employeeRepository.findByEmployeeId(report.getSubmittedBy()).orElse(null);
                 if (emp != null) {
                     dto.setEmployeeName(emp.getEmployeeName());
                     dto.setEmployeeId(emp.getEmployeeId());
-                    dto.setDepartment(emp.getDepartment());
+                    // Only set division from employee for employee reports
+                    if ("employee".equalsIgnoreCase(report.getType())) {
+                        dto.setDivision(emp.getDepartment());
+                    }
                 } else {
                     dto.setEmployeeId(report.getSubmittedBy());
                 }

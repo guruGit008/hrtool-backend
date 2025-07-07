@@ -14,8 +14,14 @@ public class ReportWithEmployeeDTO {
     private String submittedBy;
     private String employeeName;
     private String employeeId;
-    private String department;
+    private String division;
     private List<String> attachments;
+    private String customerName;
+    private String designation;
+    private String landlineOrMobile;
+    private String emailId;
+    private String remarks;
+    private String productOrRequirements;
 
     // Getters and setters
     public Long getId() { return id; }
@@ -38,8 +44,48 @@ public class ReportWithEmployeeDTO {
     public void setEmployeeName(String employeeName) { this.employeeName = employeeName; }
     public String getEmployeeId() { return employeeId; }
     public void setEmployeeId(String employeeId) { this.employeeId = employeeId; }
-    public String getDepartment() { return department; }
-    public void setDepartment(String department) { this.department = department; }
+    public String getDivision() {
+        return division;
+    }
+    public void setDivision(String division) {
+        this.division = division;
+    }
     public List<String> getAttachments() { return attachments; }
     public void setAttachments(List<String> attachments) { this.attachments = attachments; }
+    public String getCustomerName() {
+        return customerName;
+    }
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+    public String getDesignation() {
+        return designation;
+    }
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+    public String getLandlineOrMobile() {
+        return landlineOrMobile;
+    }
+    public void setLandlineOrMobile(String landlineOrMobile) {
+        this.landlineOrMobile = landlineOrMobile;
+    }
+    public String getEmailId() {
+        return emailId;
+    }
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+    public String getRemarks() {
+        return remarks;
+    }
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+    public String getProductOrRequirements() {
+        return productOrRequirements;
+    }
+    public void setProductOrRequirements(String productOrRequirements) {
+        this.productOrRequirements = productOrRequirements;
+    }
 } 
