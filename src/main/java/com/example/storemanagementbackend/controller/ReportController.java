@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  
 @RestController
 @RequestMapping("/api/reports") // Base URL for all report-related endpoints
-@CrossOrigin(origins = "https://hrtool-backend.onrender.com") // Allow requests from your Next.js frontend
+@CrossOrigin(origins = "https://hrtool-frontend-two.vercel.app") // Allow requests from your Next.js frontend
 public class ReportController {
  
     @Autowired
