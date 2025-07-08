@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  
 @RestController
 @RequestMapping("/api/reports") // Base URL for all report-related endpoints
-@CrossOrigin(origins = "https://hrtool-frontend-two.vercel.app") // Allow requests from your Next.js frontend
+@CrossOrigin(origins = "https://hrtool-backend.onrender.com") // Allow requests from your Next.js frontend
 public class ReportController {
  
     @Autowired
@@ -60,6 +60,7 @@ public class ReportController {
             dto.setEmailId(report.getEmailId());
             dto.setRemarks(report.getRemarks());
             dto.setProductOrRequirements(report.getProductOrRequirements());
+            dto.setCompany(report.getCompany());
             // Always set the division from the report (for customer reports, this is the dropdown value)
             dto.setDivision(report.getDivision());
             // Map employee details if type is employee or customer
@@ -111,6 +112,7 @@ public class ReportController {
             dto.setEmailId(report.getEmailId());
             dto.setRemarks(report.getRemarks());
             dto.setProductOrRequirements(report.getProductOrRequirements());
+            dto.setCompany(report.getCompany());
             // Always set the division from the report (for customer reports, this is the dropdown value)
             dto.setDivision(report.getDivision());
             // Map employee details if type is employee or customer
@@ -130,6 +132,28 @@ public class ReportController {
             return dto;
         }).collect(Collectors.toList());
         return ResponseEntity.ok(result);
+    }
+ 
+    // GET all unique divisions for customer reports
+    @GetMapping("/customer-divisions")
+    public ResponseEntity<List<String>> getCustomerDivisions() {
+        List<String> divisions = reportService.getReportsByType("customer").stream()
+            .map(Report::getDivision)
+            .filter(div -> div != null && !div.trim().isEmpty())
+            .distinct()
+            .collect(Collectors.toList());
+        return ResponseEntity.ok(divisions);
+    }
+ 
+    // GET all unique companies for customer reports
+    @GetMapping("/customer-companies")
+    public ResponseEntity<List<String>> getCustomerCompanies() {
+        List<String> companies = reportService.getReportsByType("customer").stream()
+            .map(Report::getCompany)
+            .filter(company -> company != null && !company.trim().isEmpty())
+            .distinct()
+            .collect(Collectors.toList());
+        return ResponseEntity.ok(companies);
     }
  
     // CREATE a new report
@@ -170,4 +194,4 @@ public class ReportController {
         }
     }
 }
- 
+

@@ -22,6 +22,7 @@ public class ReportWithEmployeeDTO {
     private String emailId;
     private String remarks;
     private String productOrRequirements;
+    private String company;
 
     // Getters and setters
     public Long getId() { return id; }
@@ -88,4 +89,10 @@ public class ReportWithEmployeeDTO {
     public void setProductOrRequirements(String productOrRequirements) {
         this.productOrRequirements = productOrRequirements;
     }
-} 
+    public String getCompany() {
+        return company;
+    }
+    public void setCompany(String company) {
+        this.company = company;
+    }
+}
