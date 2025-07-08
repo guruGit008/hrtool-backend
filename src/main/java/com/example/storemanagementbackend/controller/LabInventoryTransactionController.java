@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/store/lab/inventory")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://hrtool-frontend-two.vercel.app")
 public class LabInventoryTransactionController {
     @Autowired
     private LabInventoryTransactionService service;

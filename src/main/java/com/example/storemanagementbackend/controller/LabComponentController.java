@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/store/lab/components")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://hrtool-frontend-two.vercel.app")
 public class LabComponentController {
     private final LabComponentService service;
 

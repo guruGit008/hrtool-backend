@@ -46,13 +46,9 @@ public class ReportController {
             ReportWithEmployeeDTO dto = new ReportWithEmployeeDTO();
             dto.setId(report.getId());
             dto.setType(report.getType());
-            dto.setSubtype(report.getSubtype());
             dto.setTitle(report.getTitle());
-            dto.setContent(report.getContent());
             dto.setDate(report.getDate());
-            dto.setStatus(report.getStatus());
             dto.setSubmittedBy(report.getSubmittedBy());
-            dto.setAttachments(report.getAttachments());
             // Map customer report fields
             dto.setCustomerName(report.getCustomerName());
             dto.setDesignation(report.getDesignation());
@@ -98,13 +94,9 @@ public class ReportController {
             ReportWithEmployeeDTO dto = new ReportWithEmployeeDTO();
             dto.setId(report.getId());
             dto.setType(report.getType());
-            dto.setSubtype(report.getSubtype());
             dto.setTitle(report.getTitle());
-            dto.setContent(report.getContent());
             dto.setDate(report.getDate());
-            dto.setStatus(report.getStatus());
             dto.setSubmittedBy(report.getSubmittedBy());
-            dto.setAttachments(report.getAttachments());
             // Map customer report fields
             dto.setCustomerName(report.getCustomerName());
             dto.setDesignation(report.getDesignation());

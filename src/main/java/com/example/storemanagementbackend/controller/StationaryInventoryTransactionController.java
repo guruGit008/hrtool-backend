@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/store/stationary/inventory")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://hrtool-frontend-two.vercel.app")
 public class StationaryInventoryTransactionController {
     private final StationaryInventoryTransactionService service;
 

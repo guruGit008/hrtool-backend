@@ -11,7 +11,7 @@ import java.util.List;
  
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000") // Adjust for your frontend URL
+@CrossOrigin(origins = "https://hrtool-frontend-two.vercel.app") // Adjust for your frontend URL
 public class LeaveRequestController {
  
     @Autowired

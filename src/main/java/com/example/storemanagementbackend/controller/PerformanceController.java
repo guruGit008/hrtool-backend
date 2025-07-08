@@ -16,7 +16,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/performance")
-@CrossOrigin(origins = "http://localhost:3000") // Allows frontend to access this API
+@CrossOrigin(origins = "https://hrtool-frontend-two.vercel.app") // Allows frontend to access this API
 public class PerformanceController {
  
     @Autowired

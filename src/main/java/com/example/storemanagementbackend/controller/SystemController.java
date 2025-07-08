@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/store/assets/systems")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://hrtool-frontend-two.vercel.app")
 public class SystemController {
     @Autowired
     private SystemService service;

@@ -41,7 +41,6 @@ public class ReportService {
             existingReport.setType(reportDetails.getType());
             existingReport.setSubtype(reportDetails.getSubtype());
             existingReport.setTitle(reportDetails.getTitle());
-            existingReport.setContent(reportDetails.getContent());
             existingReport.setDate(reportDetails.getDate());
             existingReport.setStatus(reportDetails.getStatus());
             existingReport.setSubmittedBy(reportDetails.getSubmittedBy());
@@ -70,4 +69,4 @@ public class ReportService {
         return reportRepository.findBySubmittedBy(employeeId);
     }
 }
- 
+

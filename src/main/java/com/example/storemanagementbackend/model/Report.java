@@ -19,9 +19,6 @@ public class Report {
     @Column(nullable = false)
     private String title;
  
-    @Column(nullable = false, length = 2000) // Increased length for content
-    private String content;
- 
     @Column(nullable = false)
     private LocalDate date; // Stores only date, no time
  
@@ -52,12 +49,10 @@ public class Report {
     public Report() {
     }
  
-    public Report(String type, String subtype, String title, String content, LocalDate date, String status,
-            String submittedBy) {
+    public Report(String type, String subtype, String title, LocalDate date, String status, String submittedBy) {
         this.type = type;
         this.subtype = subtype;
         this.title = title;
-        this.content = content;
         this.date = date;
         this.status = status;
         this.submittedBy = submittedBy;
@@ -94,14 +89,6 @@ public class Report {
  
     public void setTitle(String title) {
         this.title = title;
-    }
- 
-    public String getContent() {
-        return content;
-    }
- 
-    public void setContent(String content) {
-        this.content = content;
     }
  
     public LocalDate getDate() {
@@ -222,7 +209,6 @@ public class Report {
                 ", type='" + type + '\'' +
                 ", subtype='" + subtype + '\'' +
                 ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
                 ", date=" + date +
                 ", status='" + status + '\'' +
                 ", submittedBy='" + submittedBy + '\'' +
