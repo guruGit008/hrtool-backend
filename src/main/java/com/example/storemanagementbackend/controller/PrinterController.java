@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/store/assets/printers")
-@CrossOrigin(origins = "https://hrtool-frontend-two.vercel.app)
+@CrossOrigin(origins = "https://hrtool-frontend-two.vercel.app")
 public class PrinterController {
     @Autowired
     private PrinterService service;
