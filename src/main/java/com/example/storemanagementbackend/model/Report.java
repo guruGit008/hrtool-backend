@@ -44,15 +44,17 @@ public class Report {
     private String productOrRequirements;
     private String division;
     private String company;
+    private String content; // Only used for non-customer reports
  
     // Constructors
     public Report() {
     }
  
-    public Report(String type, String subtype, String title, LocalDate date, String status, String submittedBy) {
+    public Report(String type, String subtype, String title, String content, LocalDate date, String status, String submittedBy) {
         this.type = type;
         this.subtype = subtype;
         this.title = title;
+        this.content = content;
         this.date = date;
         this.status = status;
         this.submittedBy = submittedBy;
@@ -202,6 +204,9 @@ public class Report {
         this.company = company;
     }
  
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
+ 
     @Override
     public String toString() {
         return "Report{" +
@@ -223,6 +228,7 @@ public class Report {
                 ", productOrRequirements='" + productOrRequirements + '\'' +
                 ", division='" + division + '\'' +
                 ", company='" + company + '\'' +
+                ", content='" + content + '\'' +
                 '}';
     }
 }
