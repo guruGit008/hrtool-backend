@@ -37,6 +37,9 @@ public class Employee {
  
     @Column(columnDefinition = "TEXT")
     private String permanentAddress;
+
+    @Column(nullable = false)
+    private String role;
  
     // In a real application, passwords should NEVER be stored directly.
     // They should be hashed using strong algorithms (e.g., BCrypt) and handled by Spring Security.
