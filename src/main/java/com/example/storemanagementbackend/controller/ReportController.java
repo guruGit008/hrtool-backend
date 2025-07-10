@@ -61,6 +61,28 @@ public class ReportController {
             dto.setCompany(report.getCompany());
             // Always set the division from the report (for customer reports, this is the dropdown value)
             dto.setDivision(report.getDivision());
+            // Map new OEM/order/competitor fields
+            dto.setSlNo(report.getSlNo());
+            dto.setItemDescription(report.getItemDescription());
+            dto.setCompetitor(report.getCompetitor());
+            dto.setModelNumber(report.getModelNumber());
+            dto.setUnitPrice(report.getUnitPrice());
+            dto.setPoNumber(report.getPoNumber());
+            dto.setOrderDate(report.getOrderDate());
+            dto.setItem(report.getItem());
+            dto.setPartNumber(report.getPartNumber());
+            dto.setXmwPrice(report.getXmwPrice());
+            dto.setUnitTotalOrderValue(report.getUnitTotalOrderValue());
+            dto.setTotalPoValue(report.getTotalPoValue());
+            dto.setXmwInvoiceRef(report.getXmwInvoiceRef());
+            dto.setXmwInvoiceDate(report.getXmwInvoiceDate());
+            dto.setNre(report.getNre());
+            dto.setQuoteDate(report.getQuoteDate());
+            dto.setQuantity(report.getQuantity());
+            // Map new standard OEM fields
+            dto.setQuotationNumber(report.getQuotationNumber());
+            dto.setProductDescription(report.getProductDescription());
+            dto.setXmwValue(report.getXmwValue());
             // Map employee details if type is employee or customer
             if (report.getSubmittedBy() != null) {
                 Employee emp = employeeRepository.findByEmployeeId(report.getSubmittedBy()).orElse(null);
@@ -111,6 +133,28 @@ public class ReportController {
             dto.setCompany(report.getCompany());
             // Always set the division from the report (for customer reports, this is the dropdown value)
             dto.setDivision(report.getDivision());
+            // Map new OEM/order/competitor fields
+            dto.setSlNo(report.getSlNo());
+            dto.setItemDescription(report.getItemDescription());
+            dto.setCompetitor(report.getCompetitor());
+            dto.setModelNumber(report.getModelNumber());
+            dto.setUnitPrice(report.getUnitPrice());
+            dto.setPoNumber(report.getPoNumber());
+            dto.setOrderDate(report.getOrderDate());
+            dto.setItem(report.getItem());
+            dto.setPartNumber(report.getPartNumber());
+            dto.setXmwPrice(report.getXmwPrice());
+            dto.setUnitTotalOrderValue(report.getUnitTotalOrderValue());
+            dto.setTotalPoValue(report.getTotalPoValue());
+            dto.setXmwInvoiceRef(report.getXmwInvoiceRef());
+            dto.setXmwInvoiceDate(report.getXmwInvoiceDate());
+            dto.setNre(report.getNre());
+            dto.setQuoteDate(report.getQuoteDate());
+            dto.setQuantity(report.getQuantity());
+            // Map new standard OEM fields
+            dto.setQuotationNumber(report.getQuotationNumber());
+            dto.setProductDescription(report.getProductDescription());
+            dto.setXmwValue(report.getXmwValue());
             // Map employee details if type is employee or customer
             if (report.getSubmittedBy() != null) {
                 Employee emp = employeeRepository.findByEmployeeId(report.getSubmittedBy()).orElse(null);

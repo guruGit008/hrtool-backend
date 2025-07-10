@@ -16,7 +16,7 @@ public class Report {
  
     private String subtype; // daily, weekly, monthly, yearly (only for employee reports)
  
-    @Column(nullable = false)
+    @Column
     private String title;
  
     @Column(nullable = false)
@@ -45,6 +45,29 @@ public class Report {
     private String division;
     private String company;
     private String content; // Only used for non-customer reports
+    private String quantity;
+ 
+    // --- OEM Orders fields ---
+    private String poNumber;
+    private LocalDate orderDate;
+    private String item;
+    private String partNumber;
+    private String xmwPrice;
+    private String unitTotalOrderValue;
+    private String totalPoValue;
+    private String xmwInvoiceRef;
+    private LocalDate xmwInvoiceDate;
+    private String nre;
+    private LocalDate quoteDate;
+    private String quotationNumber;
+    private String productDescription;
+    private String xmwValue;
+    // --- Competitor Analysis fields ---
+    private Integer slNo;
+    private String itemDescription;
+    private String competitor;
+    private String modelNumber;
+    private String unitPrice;
  
     // Constructors
     public Report() {
@@ -206,6 +229,50 @@ public class Report {
  
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
+ 
+    public String getQuantity() { return quantity; }
+    public void setQuantity(String quantity) { this.quantity = quantity; }
+ 
+    // --- OEM Orders fields ---
+    public String getPoNumber() { return poNumber; }
+    public void setPoNumber(String poNumber) { this.poNumber = poNumber; }
+    public LocalDate getOrderDate() { return orderDate; }
+    public void setOrderDate(LocalDate orderDate) { this.orderDate = orderDate; }
+    public String getItem() { return item; }
+    public void setItem(String item) { this.item = item; }
+    public String getPartNumber() { return partNumber; }
+    public void setPartNumber(String partNumber) { this.partNumber = partNumber; }
+    public String getXmwPrice() { return xmwPrice; }
+    public void setXmwPrice(String xmwPrice) { this.xmwPrice = xmwPrice; }
+    public String getUnitTotalOrderValue() { return unitTotalOrderValue; }
+    public void setUnitTotalOrderValue(String unitTotalOrderValue) { this.unitTotalOrderValue = unitTotalOrderValue; }
+    public String getTotalPoValue() { return totalPoValue; }
+    public void setTotalPoValue(String totalPoValue) { this.totalPoValue = totalPoValue; }
+    public String getXmwInvoiceRef() { return xmwInvoiceRef; }
+    public void setXmwInvoiceRef(String xmwInvoiceRef) { this.xmwInvoiceRef = xmwInvoiceRef; }
+    public LocalDate getXmwInvoiceDate() { return xmwInvoiceDate; }
+    public void setXmwInvoiceDate(LocalDate xmwInvoiceDate) { this.xmwInvoiceDate = xmwInvoiceDate; }
+    public String getNre() { return nre; }
+    public void setNre(String nre) { this.nre = nre; }
+    public LocalDate getQuoteDate() { return quoteDate; }
+    public void setQuoteDate(LocalDate quoteDate) { this.quoteDate = quoteDate; }
+    public String getQuotationNumber() { return quotationNumber; }
+    public void setQuotationNumber(String quotationNumber) { this.quotationNumber = quotationNumber; }
+    public String getProductDescription() { return productDescription; }
+    public void setProductDescription(String productDescription) { this.productDescription = productDescription; }
+    public String getXmwValue() { return xmwValue; }
+    public void setXmwValue(String xmwValue) { this.xmwValue = xmwValue; }
+    // --- Competitor Analysis fields ---
+    public Integer getSlNo() { return slNo; }
+    public void setSlNo(Integer slNo) { this.slNo = slNo; }
+    public String getItemDescription() { return itemDescription; }
+    public void setItemDescription(String itemDescription) { this.itemDescription = itemDescription; }
+    public String getCompetitor() { return competitor; }
+    public void setCompetitor(String competitor) { this.competitor = competitor; }
+    public String getModelNumber() { return modelNumber; }
+    public void setModelNumber(String modelNumber) { this.modelNumber = modelNumber; }
+    public String getUnitPrice() { return unitPrice; }
+    public void setUnitPrice(String unitPrice) { this.unitPrice = unitPrice; }
  
     @Override
     public String toString() {

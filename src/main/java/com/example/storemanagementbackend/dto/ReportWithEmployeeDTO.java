@@ -23,6 +23,26 @@ public class ReportWithEmployeeDTO {
     private String remarks;
     private String productOrRequirements;
     private String company;
+    private Integer slNo;
+    private String itemDescription;
+    private String competitor;
+    private String modelNumber;
+    private String unitPrice;
+    private String poNumber;
+    private java.time.LocalDate orderDate;
+    private String item;
+    private String partNumber;
+    private String xmwPrice;
+    private String unitTotalOrderValue;
+    private String totalPoValue;
+    private String xmwInvoiceRef;
+    private java.time.LocalDate xmwInvoiceDate;
+    private String nre;
+    private java.time.LocalDate quoteDate;
+    private String quantity;
+    private String quotationNumber;
+    private String productDescription;
+    private String xmwValue;
 
     // Getters and setters
     public Long getId() { return id; }
@@ -95,4 +115,44 @@ public class ReportWithEmployeeDTO {
     public void setCompany(String company) {
         this.company = company;
     }
+    public Integer getSlNo() { return slNo; }
+    public void setSlNo(Integer slNo) { this.slNo = slNo; }
+    public String getItemDescription() { return itemDescription; }
+    public void setItemDescription(String itemDescription) { this.itemDescription = itemDescription; }
+    public String getCompetitor() { return competitor; }
+    public void setCompetitor(String competitor) { this.competitor = competitor; }
+    public String getModelNumber() { return modelNumber; }
+    public void setModelNumber(String modelNumber) { this.modelNumber = modelNumber; }
+    public String getUnitPrice() { return unitPrice; }
+    public void setUnitPrice(String unitPrice) { this.unitPrice = unitPrice; }
+    public String getPoNumber() { return poNumber; }
+    public void setPoNumber(String poNumber) { this.poNumber = poNumber; }
+    public java.time.LocalDate getOrderDate() { return orderDate; }
+    public void setOrderDate(java.time.LocalDate orderDate) { this.orderDate = orderDate; }
+    public String getItem() { return item; }
+    public void setItem(String item) { this.item = item; }
+    public String getPartNumber() { return partNumber; }
+    public void setPartNumber(String partNumber) { this.partNumber = partNumber; }
+    public String getXmwPrice() { return xmwPrice; }
+    public void setXmwPrice(String xmwPrice) { this.xmwPrice = xmwPrice; }
+    public String getUnitTotalOrderValue() { return unitTotalOrderValue; }
+    public void setUnitTotalOrderValue(String unitTotalOrderValue) { this.unitTotalOrderValue = unitTotalOrderValue; }
+    public String getTotalPoValue() { return totalPoValue; }
+    public void setTotalPoValue(String totalPoValue) { this.totalPoValue = totalPoValue; }
+    public String getXmwInvoiceRef() { return xmwInvoiceRef; }
+    public void setXmwInvoiceRef(String xmwInvoiceRef) { this.xmwInvoiceRef = xmwInvoiceRef; }
+    public java.time.LocalDate getXmwInvoiceDate() { return xmwInvoiceDate; }
+    public void setXmwInvoiceDate(java.time.LocalDate xmwInvoiceDate) { this.xmwInvoiceDate = xmwInvoiceDate; }
+    public String getNre() { return nre; }
+    public void setNre(String nre) { this.nre = nre; }
+    public java.time.LocalDate getQuoteDate() { return quoteDate; }
+    public void setQuoteDate(java.time.LocalDate quoteDate) { this.quoteDate = quoteDate; }
+    public String getQuantity() { return quantity; }
+    public void setQuantity(String quantity) { this.quantity = quantity; }
+    public String getQuotationNumber() { return quotationNumber; }
+    public void setQuotationNumber(String quotationNumber) { this.quotationNumber = quotationNumber; }
+    public String getProductDescription() { return productDescription; }
+    public void setProductDescription(String productDescription) { this.productDescription = productDescription; }
+    public String getXmwValue() { return xmwValue; }
+    public void setXmwValue(String xmwValue) { this.xmwValue = xmwValue; }
 }
